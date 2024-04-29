@@ -2,10 +2,15 @@ package main
 
 import (
 	"fmt"
-	"io"
+	"html/template"
 	"log"
 	"net/http"
 )
+
+type Film struct {
+	Title string
+	Director string
+}
 
 func main() {
 	// Define the port
@@ -14,9 +19,16 @@ func main() {
 
 	// Define a route handler
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "Hello World\n")
-		io.WriteString(w, r.Method)
-		// OUTPUT: Hello World GET
+		// Define the data
+		films := []Film {
+			{Title: "Jurassic Park", Director: "Steven Spielberg"},
+			{Title: "Matrix", Director: "Wachowski Brothers"},
+			{Title: "Pulp Fiction", Director: "Quentin Tarantino"},
+		}
+
+		// Define the template and return it along with the data
+		response := template.Must(template.ParseFiles("index.html"))
+		response.Execute(w, films)
 	})
 
 	// Listen on port 8000
