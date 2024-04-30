@@ -36,8 +36,7 @@ func main() {
 			response.Execute(w, films)
 
 		default:
-			// Return a 405 Method Not Allowed error
-			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed) // 405
 		}
 	})
 
@@ -46,7 +45,23 @@ func main() {
 		// Check if the request is an HTMX request (HX-Request header is set to true if it is)
 		// log.Print(r.Header.Get("HX-Request"))
 
+		switch r.Method {
+		case "POST":
+			// Parse the form data
+			title := r.PostFormValue("title")
+			director := r.PostFormValue("director")
 
+			// Append the new film to the films slice
+			films = append(films, Film{Title: title, Director: director})
+
+			// Return the new film as a list item (before the user refreshes the home page, the new film will be added to the list without a page refresh, thanks to htmx and go templates)
+			htmlString := fmt.Sprintf("<li class='list-group-item'>%s - Directed by %s</li>", title, director)
+			response, _ := template.New("t").Parse(htmlString)
+			response.Execute(w, nil)
+
+		default:
+			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed) // 405
+		}
 	})
 
 	// Listen on port 3000

@@ -33,11 +33,23 @@
           <form hx-post="/add-film" class="mb-4">
             <div class="mb-2">
               <label for="title" class="form-label">Title</label>
-              <input type="text" class="form-control" id="title" />
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                name="title"
+                required
+              />
             </div>
             <div class="mb-2">
               <label for="director" class="form-label">Director</label>
-              <input type="text" class="form-control" id="director" />
+              <input
+                type="text"
+                class="form-control"
+                id="director"
+                name="director"
+                required
+              />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>

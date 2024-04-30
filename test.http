@@ -3,3 +3,12 @@ GET http://localhost:3000/
 
 ### POST Home
 POST http://localhost:3000/
+
+### POST /add-film
+POST http://localhost:3000/add-film
+Content-Type: application/x-www-form-urlencoded
+
+title=Inception&director=Christopher+Nolan
+
+### GET /add-film
+GET http://localhost:3000/add-film
