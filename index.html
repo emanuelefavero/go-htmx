@@ -13,6 +13,13 @@
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="/static/style.css" />
 
+    <!-- HTMX CDN -->
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
+
     <title>Go HTMX</title>
   </head>
   <body>
@@ -23,7 +30,7 @@
         <div class="col-md-6">
           <!-- ADD A FILM -->
           <h2>Add a Film</h2>
-          <form class="mb-4">
+          <form hx-post="/add-film" class="mb-4">
             <div class="mb-2">
               <label for="title" class="form-label">Title</label>
               <input type="text" class="form-control" id="title" />
