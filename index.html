@@ -77,10 +77,13 @@
             <!-- with `range`, we can iterate through the array -->
             <!-- @see https://golangforall.org/en/post/templates.html -->
             {{range .}}
+
+            <!-- TIP: {{block "film-list-item" .}} is needed for getting dynamic data from /add-film route -->
+            {{ block "film-list-item" .}}
             <li class="list-group-item">
               {{.Title}} - Directed by {{.Director}}
             </li>
-            {{end}}
+            {{end}} {{end}}
           </ul>
         </div>
       </div>

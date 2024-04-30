@@ -58,10 +58,11 @@ func main() {
 			// Append the new film to the films slice
 			films = append(films, Film{Title: title, Director: director})
 
-			// Return the new film as a list item (before the user refreshes the home page, the new film will be added to the list without a page refresh, thanks to htmx and go templates)
-			htmlString := fmt.Sprintf("<li class='list-group-item'>%s - Directed by %s</li>", title, director)
-			response, _ := template.New("t").Parse(htmlString)
-			response.Execute(w, nil)
+			// Define the template and return it along with the new film data
+			response := template.Must(template.ParseFiles("index.html"))
+			response.ExecuteTemplate(w, "film-list-item", Film{Title: title, Director: director})
+
+			// TIP: The data will be passed to "index.html" and be placed inside the {{block "film-list-item" .}}{{end}} code
 
 		default:
 			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed) // 405
