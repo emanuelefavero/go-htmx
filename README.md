@@ -24,6 +24,15 @@ Then open your browser and go to `http://localhost:3000`
 
 > Tip: [Gomon](https://github.com/JulesGuesnon/Gomon) is a command line tool similar to nodemon but for Go, it will automatically restart your server when you make changes to your code
 
+### Resources
+
+- [HTMX](https://htmx.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Go](https://go.dev/)
+- [Gomon](https://github.com/JulesGuesnon/Gomon)
+- [Go Templates](https://pkg.go.dev/text/template)
+- [Go Templates easy tutorial](https://golangforall.org/en/post/templates.html)
+
 ## License
 
 - [MIT](LICENSE.md)
