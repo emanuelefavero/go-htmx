@@ -20,18 +20,25 @@ func main() {
 	// Serve static files from the "static" directory
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
+	// Define the data
+	films := []Film {
+		{Title: "Jurassic Park", Director: "Steven Spielberg"},
+		{Title: "Matrix", Director: "Wachowski Brothers"},
+		{Title: "Pulp Fiction", Director: "Quentin Tarantino"},
+	}
+
 	// * home route
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
-		// Define the data
-		films := []Film {
-			{Title: "Jurassic Park", Director: "Steven Spielberg"},
-			{Title: "Matrix", Director: "Wachowski Brothers"},
-			{Title: "Pulp Fiction", Director: "Quentin Tarantino"},
-		}
+		switch r.Method {
+		case "GET":
+			// Define the template and return it along with the data
+			response := template.Must(template.ParseFiles("index.html"))
+			response.Execute(w, films)
 
-		// Define the template and return it along with the data
-		response := template.Must(template.ParseFiles("index.html"))
-		response.Execute(w, films)
+		default:
+			// Return a 405 Method Not Allowed error
+			http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
+		}
 	})
 
 	// * /add-film route
@@ -39,7 +46,7 @@ func main() {
 		// Check if the request is an HTMX request (HX-Request header is set to true if it is)
 		// log.Print(r.Header.Get("HX-Request"))
 
-		
+
 	})
 
 	// Listen on port 3000
