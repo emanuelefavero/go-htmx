@@ -4,6 +4,10 @@ This is a simple example of how to use HTMX with Go
 
 > Note: We also used bootstrap for styling
 
+#### Screenshot
+
+<img src="screenshot.jpg" alt="screenshot" width="300">
+
 ## How to run
 
 - CLone this repository and `cd` into it
