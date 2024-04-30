@@ -3,18 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+
+    <!-- BOOTSTRAP 5 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="/static/style.css" />
+
+    <title>Go HTMX</title>
   </head>
   <body>
-    <h1>Hello</h1>
+    <main class="container p-4">
+      <!-- TITLE -->
+      <h1 class="mb-4">Go <mark>HTMX</mark> App</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <!-- ADD A FILM -->
+          <h2>Add a Film</h2>
+          <form class="mb-4">
+            <div class="mb-2">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" />
+            </div>
+            <div class="mb-2">
+              <label for="director" class="form-label">Director</label>
+              <input type="text" class="form-control" id="director" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
 
-    <ul>
-      <!-- GO has a built in html/template engine -->
-      <!-- with `range`, we can iterate through the array -->
-      <!-- @see https://golangforall.org/en/post/templates.html -->
-      {{range .}}
-      <li>{{.Title}} - Directed by {{.Director}}</li>
-      {{end}}
-    </ul>
+        <div class="col-md-6">
+          <!-- FILMS LIST -->
+          <h2>Films</h2>
+          <ul class="list-group mb-4">
+            <!-- GO has a built in html/template engine -->
+            <!-- with `range`, we can iterate through the array -->
+            <!-- @see https://golangforall.org/en/post/templates.html -->
+            {{range .}}
+            <li class="list-group-item">
+              {{.Title}} - Directed by {{.Director}}
+            </li>
+            {{end}}
+          </ul>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

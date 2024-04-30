@@ -17,7 +17,10 @@ func main() {
 	PORT := "3000"
 	fmt.Println("Server started on http://localhost:" + PORT)
 
-	// Define a route handler
+	// Serve static files from the "static" directory
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	// Define a route handler for GET home
 	http.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
 		// Define the data
 		films := []Film {
@@ -33,7 +36,6 @@ func main() {
 
 	// Listen on port 8000
 	log.Fatal(http.ListenAndServe(":3000", nil))
-	
 
 	// TIP: log.Fatal is a wrapper around log.Print() followed by a call to os.Exit(1), it logs the error and exits the program if an error occurs
 }
