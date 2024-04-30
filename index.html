@@ -35,6 +35,7 @@
             hx-target="#film-list"
             hx-swap="beforeend"
             hx-indicator="#spinner"
+            hx-on::after-request="this.reset()"
             class="mb-4"
           >
             <div class="mb-2">
