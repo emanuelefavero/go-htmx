@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 )
 
 type Film struct {
@@ -47,6 +48,9 @@ func main() {
 
 		switch r.Method {
 		case "POST":
+			// Simulate 0.5 second delay to show spinner
+			time.Sleep(500 * time.Millisecond)
+
 			// Parse the form data
 			title := r.PostFormValue("title")
 			director := r.PostFormValue("director")

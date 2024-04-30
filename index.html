@@ -34,6 +34,7 @@
             hx-post="/add-film"
             hx-target="#film-list"
             hx-swap="beforeend"
+            hx-indicator="#spinner"
             class="mb-4"
           >
             <div class="mb-2">
@@ -46,7 +47,7 @@
                 required
               />
             </div>
-            <div class="mb-2">
+            <div class="mb-3">
               <label for="director" class="form-label">Director</label>
               <input
                 type="text"
@@ -56,7 +57,14 @@
                 required
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="d-flex justify-content-start align-items-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <div
+                id="spinner"
+                class="spinner-border text-primary ms-2 htmx-indicator"
+                role="status"
+              ></div>
+            </div>
           </form>
         </div>
 
