@@ -10,7 +10,7 @@ This is a simple example of how to use HTMX with Go
 
 ## How to run
 
-- CLone this repository and `cd` into it
+- Clone this repository and `cd` into it
 - Make sure you have [Go](https://go.dev/learn/) installed on your machine, then run:
 
 ```bash
